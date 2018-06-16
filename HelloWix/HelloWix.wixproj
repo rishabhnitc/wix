@@ -22,9 +22,16 @@
     <Compile Include="File1.wxs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="redist\readme.txt" />
+    <Content Include="redist\doc.txt" />
+    <Content Include="redist\ModuleB.txt" />
+    <Content Include="redist\ModuleC.txt" />
+    <Content Include="redist\ModuleA.txt" />
     <Content Include="redist\foo.txt" />
+    <Content Include="redist\mainApp.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="docs" />
     <Folder Include="redist" />
   </ItemGroup>
   <Import Project="$(WixTargetsPath)" Condition=" '$(WixTargetsPath)' != '' " />

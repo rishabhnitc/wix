@@ -5,16 +5,57 @@
     <MediaTemplate EmbedCab="yes"/>
     <Directory Id="TARGETDIR" Name="SourceDir">
       <Directory Id="ProgramFilesFolder">
-        <Directory Id="INSTALLFOLDER" Name="HelloWix"/>
+        <Directory Id="INSTALLFOLDER" Name="HelloWix">
+          <Directory Id="docs" Name="docs"/>
+        </Directory>
       </Directory>
     </Directory>
+    <ComponentGroup Id ="ProductComponents" Directory="INSTALLFOLDER">
+      <Component Id="MainApplication">
+        <File Source="redist\mainApp.txt" />
+      </Component>
+      <Component Id="ModuleA">
+        <File Source="redist\ModuleA.txt" />
+      </Component>
+      <Component Id="ModuleB">
+        <File Source="redist\ModuleB.txt" />
+      </Component>
+      <Component Id="ModuleC">
+        <File Source="redist\ModuleC.txt" />
+      </Component>
+    </ComponentGroup>
     
+    <ComponentGroup Id ="DocComponents" Directory="docs">
+      <Component Id="Documentation">
+        <File Source="redist\doc.txt" />
+      </Component>
+      <Component Id="Readme">
+        <File Source="redist\readme.txt" />
+      </Component>     
+    </ComponentGroup>
+
     <Component Id="TextFileCoponent" Directory="INSTALLFOLDER">
       <File Source="redist\foo.txt"/>
     </Component>
 
-    <Feature Id="MainFeature" Title="HelloWix" Level="1">
+
+    <Feature Id="ProductFeature" Title="HelloWix" Level="1">
       <ComponentRef Id="TextFileCoponent"/>
+      <ComponentRef Id="MainApplication"/>
+      <Feature Id="ModuleA" Title="ModuleA" Level="1">
+        <ComponentRef Id="ModuleA"/> 
+      </Feature>
+      <Feature Id="ModuleB" Title="ModuleB" Level="1">
+        <ComponentRef Id="ModuleB"/>
+      </Feature>
+      <Feature Id="ModuleC" Title="ModuleC" Level="1">
+        <ComponentRef Id="ModuleC"/>
+      </Feature>     
+      <ComponentGroupRef Id="DocComponents"/>
+    </Feature>
+    <Feature Id="ProductDocs" Title="Documentation" Level="1">        
+    
+      <ComponentGroupRef Id="DocComponents"/>
     </Feature>
   </Product>
 </Wix>
