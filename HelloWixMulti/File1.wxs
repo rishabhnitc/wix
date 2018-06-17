@@ -10,7 +10,8 @@
         </Directory>
       </Directory>
     </Directory>
-    <ComponentGroup Id ="ProductComponents" Directory="INSTALLFOLDER">
+    <UIRef Id="WixUI_FeatureTree"/>
+    <ComponentGroup Id ="ProductComponents" Directory="INSTALLFOLDER"  >
       <Component Id="MainApplication">
         <File Source="redist\mainApp.txt" />
       </Component>
@@ -39,7 +40,7 @@
     </Component>
 
 
-    <Feature Id="ProductFeature" Title="HelloWix" Level="1">
+    <Feature Id="ProductFeature" Title="HelloWix" Level="1" Absent="disallow">
       <ComponentRef Id="TextFileCoponent"/>
       <ComponentRef Id="MainApplication"/>
       <Feature Id="ModuleA" Title="ModuleA" Level="1">
